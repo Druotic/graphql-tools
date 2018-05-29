@@ -60,10 +60,12 @@ export default function mergeSchemas({
   schemas,
   onTypeConflict,
   resolvers,
+  inheritResolversFromInterfaces
 }: {
   schemas: Array<string | GraphQLSchema | Array<GraphQLNamedType>>;
   onTypeConflict?: OnTypeConflict;
   resolvers?: IResolversParameter;
+  inheritResolversFromInterfaces?: boolean;
 }): GraphQLSchema {
   let visitType: VisitType = defaultVisitType;
   if (onTypeConflict) {
@@ -72,17 +74,19 @@ export default function mergeSchemas({
     );
     visitType = createVisitTypeFromOnTypeConflict(onTypeConflict);
   }
-  return mergeSchemasImplementation({ schemas, visitType, resolvers });
+  return mergeSchemasImplementation({ schemas, visitType, resolvers, inheritResolversFromInterfaces });
 }
 
 function mergeSchemasImplementation({
   schemas,
   visitType,
   resolvers,
+  inheritResolversFromInterfaces
 }: {
   schemas: Array<string | GraphQLSchema | Array<GraphQLNamedType>>;
   visitType?: VisitType;
   resolvers?: IResolversParameter;
+  inheritResolversFromInterfaces?: boolean;
 }): GraphQLSchema {
   const allSchemas: Array<GraphQLSchema> = [];
   const typeCandidates: { [name: string]: Array<MergeTypeCandidate> } = {};
@@ -278,6 +282,7 @@ function mergeSchemasImplementation({
   addResolveFunctionsToSchema({
     schema: mergedSchema,
     resolvers: mergeDeep(generatedResolvers, resolvers),
+    inheritResolversFromInterfaces
   });
 
   forEachField(mergedSchema, field => {
