@@ -1,5 +1,9 @@
 # Change log
 
+### vNEXT
+
+* Add `inheritResolversFromInterfaces` option to `mergeSchemas` [PR #812](https://github.com/apollographql/graphql-tools/pull/812)
+
 ### v3.0.2
 
 * Fixed duplicate fragments getting added during transform in `FilterToSchema` [#778](https://github.com/apollographql/graphql-tools/pull/778)
