@@ -5,6 +5,7 @@
 * `delegateToSchema` now behaves like `info.mergeInfo.delegateToSchema` for fragment handling
   [Issue #876](https://github.com/apollographql/graphql-tools/issues/876)
   [PR #885](https://github.com/apollographql/graphql-tools/pull/885)
+* Add `inheritResolversFromInterfaces` option to `mergeSchemas` [PR #812](https://github.com/apollographql/graphql-tools/pull/812)
 
 ### v3.0.5
 
@@ -23,7 +24,6 @@
   defined in the parent query.
   [Issue #753](https://github.com/apollographql/graphql-tools/issues/753)
   [PR #806](https://github.com/apollographql/graphql-tools/pull/806)
-
 
 ### v3.0.2
 
